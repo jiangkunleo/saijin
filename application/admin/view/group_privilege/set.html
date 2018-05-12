@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>设置组权限</title>
+    <link href="__admin__/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__admin__/js/jquery.js"></script>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">设置组的权限</a></li>
+        </ul>
+    </div>
+    <div class="formbody">
+        <div class="formtitle"><span>基本信息</span></div>
+        <form action="{:url('admin/group_privilege/set')}" method="post">
+            <span style="font-size: 16px">您正在给【<label style="color: red;font-weight: bolder;">{$group_name}</label>】的分组设置权限</span><br>
+            <input type="hidden" name="code_group" value="{$group_code}" />
+            <ul class="forminfo">
+                <table class="tablelist">
+                    <thead>
+                        <tr>
+                            <th>权限</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>
+                            {volist name="code_privilege_data" id="vo"}
+                                <input type="checkbox" class="child" name="privilege_codes[]" value="{$vo['code']}">
+                                {$vo['name']}&emsp;
+
+                            {/volist}
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <br/>
+                <li>
+                    <label>&nbsp;</label>
+                    <input name="" type="submit" class="btn" value="确认设置" style="text-align:center;" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+</html>

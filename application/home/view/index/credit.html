@@ -1,0 +1,364 @@
+  <div class="credit">
+    <div class="credit-box">
+      <!--头-->
+      <div class="top-title">
+        <ul>
+          <li>您当前的位置：</li>
+          <li>
+            <a href="">首页 &gt;</a>
+          </li>
+          <li class="active">
+            <a href="">信贷产品</a>
+          </li>
+        </ul>
+      </div>
+
+      <!--列表-->
+      <div class="cre-select">
+        <div class="cre-item add-sort">
+          <span class="cre-name">已选择：</span>
+          <div class="cre-sort">
+          </div>
+        </div>
+        <!-- 隐藏域-接收首页get过来的参数 -->
+        <input type="hidden" name="get_lines_id" id="get_lines_id" value="{$get_lines_id}">
+        <input type="hidden" name="get_lines_name" id="get_lines_name" value="{$get_lines_name}">
+        <input type="hidden" name="get_confine_id" id="get_confine_id" value="{$get_confine_id}">
+        <input type="hidden" name="get_confine_name" id="get_confine_name" value="{$get_confine_name}">
+        <input type="hidden" name="get_work_type_id" id="get_work_type_id" value="{$get_work_type_id}">
+        <input type="hidden" name="get_work_type_name" id="get_work_type_name" value="{$get_work_type_name}">
+
+        <div class="cre-item">
+          <span class="cre-name">贷款金额：</span>
+          <span class="unlimited"><a href="javascript:void(0);">不限</a></span>
+          <div class="cre-content type1">
+          {volist name="lines_cate_data" id="vo"}
+            <a href="javascript:void(0);">{$vo['line_code']}万</a>
+            <input type="hidden" name="lines" value="{$vo['id']}">
+          {/volist}
+          </div>
+        </div>
+
+        <div class="cre-item">
+          <span class="cre-name">贷款期限：</span>
+          <span class="unlimited"><a href="javascript:void(0);">不限</a></span>
+          <div class="cre-content type2" >
+          {volist name="confine_cate_data" id="vo"}
+            <a href="javascript:void(0);">
+            {if condition="$vo['months'] lt 12"}
+            {$vo['months']}个月
+            {elseif condition="$vo['months'] egt 12"/}
+            {$vo['months']/12|floor}年
+            {/if}
+            </a>
+            <input type="hidden" name="confine" value="{$vo['id']}">
+          {/volist}
+          </div>
+        </div>
+
+        <div class="cre-item">
+          <span class="cre-name">贷款类型：</span>
+          <span class="unlimited"><a href="javascript:void(0);">不限</a></span>
+          <div class="cre-content type3">
+          {volist name="son_cate_data" id="vo"}
+            <a href="javascript:void(0);">{$vo['name']}</a>
+            <input type="hidden" name="cate_son" value="{$vo['id']}">
+          {/volist}
+          </div>
+        </div>
+
+        <div class="cre-item">
+          <span class="cre-name type4">职业身份：</span>
+          <span class="unlimited"><a href="javascript:void(0);">不限</a></span>
+          <div class="cre-content type4">
+          {volist name="work_cate_data" id="vo"}
+            <a href="javascript:void(0);">{$vo['name']}</a>
+            <input type="hidden" name="work_type" value="{$vo['code']}">
+          {/volist}
+          </div>
+        </div>
+      </div>
+
+      <!--内容-->
+      <div class="credit-content">
+        <div class="credit-fl">
+          <!--js动态添加数据-->
+
+          <!--js动态添加分页数据-->
+          <!-- <div class="pag" id="page" >
+          </div> -->
+        </div>
+        
+        <div class="jh-fr">
+          <!--快速申请-->
+          <div class="quick-apply">
+            <h1>快速申请</h1>
+            <form action="{:url('home/index/apply')}" method="post">
+              <div class="quick-item">
+                <label>您的姓名：</label>
+                <input name="name" class="int" type="text" placeholder="请填写您的姓名">
+              </div>
+              <div class="quick-item">
+                <label>手机号码：</label>
+                <input name="phone" class="int" type="text" placeholder="请填写您的手机号码">
+              </div>
+              <div class="quick-item">
+                <label>所在成市：</label>
+                <input name="zone"  class="int" type="text" placeholder="例如：广州">
+              </div>
+              <div class="quick-item">
+                <input type="checkbox" name="is_agree" checked class="ckb">
+                <span>本人已阅读并同意<a href="javascript:void(0)">《赛金金服平台服务协议》</a></span>
+              </div>
+              <div class="quick-item">
+                <input type="submit"  class="btn" value="申请">
+              </div>
+            </form>
+            <p>提交申请后，客服会拨打您的手机，为您免费定制贷款方案。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="__home__/js/jquery-1.10.2.min.js"></script>
+  <script src="__home__/js/swiper.min.js"></script>
+  <script src="__home__/js/index.js"></script>
+  <script>
+  $(function(){
+    get_data();
+    csvlues();
+    // 贷款金额条件被点选时
+    $('.cre-item .type1 ').on('click','a',function(){
+      var addSort = $('.cre-sort');
+      var html = "";
+      var textA = $(this).text();
+      var va_id = $(this).next().val(); 
+      var textName = $(this).parent().siblings('.cre-name').text();
+      html +=`
+        <div class="cre-sort-box" id="cre-sort-box1">
+          <h3>${textName}</h3>
+          <span >${textA}</span>
+          <input type="hidden" id="lines" name="liens" value="${va_id}">
+          <b>&#10006;</b>
+        </div>
+      `;
+      if($('#cre-sort-box1').length > 0) {
+        $('#cre-sort-box1 span').html($(this).text());
+        $('#lines').val($(this).next().val());
+      }else{
+        addSort.append(html);
+      }
+      //执行函数csvlues(),用将筛选条件发送到后台进行查询数据
+      csvlues();    
+    });
+
+    //当页面是首页查询跳转过来时，要执行获取对应条件的函数
+    function get_data() {
+      var get_lines_id = Number($('#get_lines_id').val());
+      var get_lines_name = $('#get_lines_name').val();
+      var get_confine_id = Number($('#get_confine_id').val());
+      var get_confine_name = $('#get_confine_name').val();
+      var get_work_type_id = Number($('#get_work_type_id').val());
+      var get_work_type_name = $('#get_work_type_name').val();
+      if(get_lines_id != '') {
+        var addSort = $('.cre-sort');
+        var html = "";
+        var textA = get_lines_name;
+        var va_id = get_lines_id; 
+        var textName = '贷款金额';
+        html +=`
+          <div class="cre-sort-box" id="cre-sort-box1">
+            <h3>${textName}</h3>
+            <span >${textA}万</span>
+            <input type="hidden" id="lines" name="liens" value="${va_id}">
+            <b>&#10006;</b>
+          </div>
+        `;
+         addSort.append(html);      
+      }
+
+      if(get_confine_id != '') {
+        var addSort = $('.cre-sort');
+        var html = "";
+        var textA = get_confine_name;
+        var va_id = get_confine_id; 
+        var textName = '贷款期限';
+        html +=`
+          <div class="cre-sort-box" id="cre-sort-box2">
+            <h3>${textName}</h3>
+            <span>${textA}</span>
+            <input type="hidden" id="confine" name="confine" value="${va_id}">
+            <b>&#10006;</b>
+          </div>
+        `;
+         addSort.append(html);      
+      }
+
+      if(get_work_type_id != '') {
+        var addSort = $('.cre-sort');
+        var html = "";
+        var textA = get_work_type_name;
+        var va_id = get_work_type_id; 
+        var textName = '职业身份';
+        html +=`
+          <div class="cre-sort-box" id="cre-sort-box4">
+            <h3>${textName}</h3>
+            <span >${textA}</span>
+            <input type="hidden" id="work_type" name="work_type" value="${va_id}">
+            <b>&#10006;</b>
+          </div>
+        `;
+         addSort.append(html);      
+      }
+    }
+
+
+    //贷款期限件被点选时
+    $('.cre-item .type2 ').on('click','a',function(){
+      var addSort = $('.cre-sort');
+      var html = "";
+      var textA = $(this).text();
+      var va_id = $(this).next().val();
+      var textName = $(this).parent().siblings('.cre-name').text();
+      html +=`
+        <div class="cre-sort-box" id="cre-sort-box2">
+          <h3>${textName}</h3>
+          <span>${textA}</span>
+          <input type="hidden" id="confine" name="confine" value="${va_id}">
+          <b>&#10006;</b>
+        </div>
+      `;
+      if($('#cre-sort-box2').length > 0) {
+        $('#cre-sort-box2 span').html($(this).text());
+        $('#confine').val($(this).next().val());
+      }else{
+        addSort.append(html);
+      }
+      //执行函数csvlues(),用将筛选条件发送到后台进行查询数据
+      csvlues();
+    });
+
+    //贷款类型件被点选时
+    $('.cre-item .type3 ').on('click','a',function(){
+      var addSort = $('.cre-sort');
+      var html = "";
+      var textA = $(this).text();
+      var va_id = $(this).next().val();
+      var textName = $(this).parent().siblings('.cre-name').text();
+      html +=`
+        <div class="cre-sort-box" id="cre-sort-box3">
+          <h3>${textName}</h3>
+          <span>${textA}</span>
+          <input type="hidden" id="cate_son" name="cate_son" value="${va_id}">
+          <b>&#10006;</b>
+        </div>
+      `;
+      if($('#cre-sort-box3').length > 0) {
+        $('#cre-sort-box3 span').html($(this).text());
+        $('#cate_son').val($(this).next().val());
+      }else{
+        addSort.append(html);
+      }
+      //执行函数csvlues(),用将筛选条件发送到后台进行查询数据
+      csvlues();
+    });
+
+
+    //职业身份条件被点选时
+    $('.cre-item .type4 ').on('click','a',function(){
+      var addSort = $('.cre-sort');
+      var html = "";
+      var textA = $(this).text();
+      var va_id = $(this).next().val();
+      var textName = $(this).parent().siblings('.cre-name').text();
+      html +=`
+        <div class="cre-sort-box" id="cre-sort-box4">
+          <h3>${textName}</h3>
+          <span >${textA}</span>
+          <input type="hidden" id="work_type" name="work_type" value="${va_id}">
+          <b>&#10006;</b>
+        </div>
+      `;
+      if($('#cre-sort-box4').length > 0) {
+        $('#cre-sort-box4 span').html($(this).text());
+        $('#work_type').val($(this).next().val());
+      }else{
+        addSort.append(html);
+      }
+      //执行函数csvlues(),用将筛选条件发送到后台进行查询数据
+      csvlues();
+    });
+
+    // 关闭筛选条件
+    $('.add-sort').on('click','.cre-sort-box b',function(){
+      $(this).parent().remove();
+      //执行函数csvlues(),用将筛选条件发送到后台进行查询数据
+      csvlues();
+    });
+
+    //将获取的条件发送到后台，然后处理返回来的数据
+    function csvlues() {
+      //获取筛选条件的值
+       lines = $('#lines').val(); //贷款金额条件
+       confine = $('#confine').val();//贷款期限条件
+       cate_son = $('#cate_son').val();//贷款类型条件
+       work_type = $('#work_type').val();//职业身份条件
+       page = ''; //被点选的页数值
+       //current_page = ''; //当前所在页的值
+       //将获取的值ajax传到后台
+      $.post('/home/index/credit',
+        {'lines':lines,'confine':confine,'cate_son':cate_son,'work_type':work_type,'page':page},
+        function(data){
+          //将返回的数据添加到页面上去
+          $('.credit-fl').html(data.html);
+          //去掉分页标签的跳转功能
+          $('.pag ul li a').attr("href",'javascript:void(0);'); 
+          //详情跳转url
+          add_url();
+        },'json');
+    }
+
+
+    //控制页码值被点击后ajax传递对应条件回后台，返回对应页数据
+    $(document).on('click','.pag ul li a',function(){
+      //当前被点击的页码数 或者 箭头
+      dianji = $(this).html();
+      current_page = $('.active span').html();
+      page = '';
+      if(dianji == "«") {
+        current_page = Number(current_page);
+        page = String(current_page-1);
+      }else if(dianji == "»") {
+        current_page = Number(current_page);
+        page = String(current_page+1);
+      }else{
+        page = dianji;
+      }
+
+      //发送ajax到后台
+      $.post('/home/index/credit',
+        {'lines':lines,'confine':confine,'cate_son':cate_son,'work_type':work_type,'page':page},
+        function(data){
+          //将返回的数据添加到页面上去
+          $('.credit-fl').html(data.html);
+          //去掉分页标签的跳转功能
+          $('.pag ul li a').attr("href",'javascript:void(0);');
+          add_url();
+        },'json');
+    });
+
+    //给详情a标签添加完整的url
+    function add_url(){
+      url_1 = window.location.href;
+      last_d = url_1.lastIndexOf('/') + 1;
+      url_2 = url_1.substring(0,last_d)+"detail";
+      $('#credit-btn1').attr("href",url_2+$('#credit-btn1').attr('href'));
+      $('#credit-btn2').attr("href",url_2+$('#credit-btn2').attr('href'));
+      $('#credit-btn3').attr("href",url_2+$('#credit-btn3').attr('href'));
+      $('#credit-btn4').attr("href",url_2+$('#credit-btn4').attr('href'));
+      $('#credit-btn5').attr("href",url_2+$('#credit-btn5').attr('href'));
+    }
+  });    
+  </script>

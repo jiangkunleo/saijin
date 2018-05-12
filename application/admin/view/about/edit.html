@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>关于我们信息修改</title>
+    <link href="__admin__/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__admin__/js/jquery.js"></script> 
+    <style>
+        .dfinput1 {
+            width: 75px;
+            height: 15px;
+            line-height: 15px;
+            margin-top:8px;
+        }
+        .formtitle span.current{ /* 第一个span标签默认选中，有下边框 */
+            border-bottom: solid 3px #66c9f3;
+        }
+        .formtitle span{
+            position: static; /* 静态定位，position的默认值，也就是不定位了 */
+            margin-right: 4px;
+            border: none;
+            cursor: pointer;
+        }    
+        .forminfo{
+            display: none;
+        }
+        .forminfo:first-child{
+            display: block;
+        }
+        .btn{
+            margin-left: 100px;
+        }
+        .textinput1 {
+            border-top: solid 1px #a7b5bc;
+            border-left: solid 1px #a7b5bc;
+            border-right: solid 1px #ced9df;
+            border-bottom: solid 1px #ced9df;
+            background: url(../images/inputbg.gif) repeat-x;
+            padding: 10px;
+            width: 504px;
+            height: 50px;
+            line-height: 20px;
+            overflow: hidden;
+        }
+        .textinput {
+            width: 700px;
+            height: 480px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">关于我们信息修改</a></li>
+        </ul>
+    </div>
+    <div class="formtitle">
+        <div class="formtitle">
+            <span class="current"> 修改信息</span>
+        </div>
+        
+        <form action="{:url('admin/about/edit')}" method="post" >
+            <ul class="forminfo">
+                <li>
+                    <label>属性键名</label>
+                    <input name="key" value="{$about_data['key']}" readonly="readonly" type="text" class="dfinput" /><i></i>
+                </li>
+
+                <li>
+                    <label>属性名称</label>
+                    <input name="name"  value="{$about_data['name']}" placeholder="请输入属性名称" type="text" class="dfinput" /><i>名称不能超过64个字符，一个中文3个字符！</i>
+                </li> 
+                <li>
+                    <label>属性值</label>
+                    <input name="value" value="{$about_data['value']}" placeholder="请输入属性值" type="text" class="dfinput" /><i>请输入对应的属性值</i>
+                </li> 
+
+                <li><label>是否启用</label>
+                    <cite>
+                    {if condition="$about_data['is_valid'] eq 'Y'"}
+                        <input name="is_valid" type="radio" value="Y" checked="checked" />是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="is_valid" type="radio" value="N" />否
+                    {elseif condition="$about_data['is_valid'] eq 'N'" /}
+                        <input name="is_valid" type="radio" value="Y"  />是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="is_valid" type="radio" value="N" checked="checked" />否
+	                {/if}
+                    </cite>
+                </li> 
+ 
+            </ul>
+
+            <ul>
+                <li> 
+                    <label>&nbsp;</label>                  
+                    <input name="" id="btnSubmit" type="submit" class="btn" value="修改信息" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+<!-- js代码 -->
+<script>
+    // // 选项卡（新闻添加内容分块）
+    // $('.formtitle span').click(function(){
+    //    // 当前被点击的span 添加 current样式，其他的span兄弟 移除 current 样式 
+    //    $(this).addClass('current').siblings().removeClass('current');
+    //    // alert( $(this).index() );  // 获取当前标签的序号
+    //    // 让和当前被点击的标签序号对应的ul显示出来，然后其他的ul隐藏掉
+    //    $('.forminfo').eq( $(this).index() ).show().siblings('.forminfo').hide();
+    // });
+</script>
+</html>

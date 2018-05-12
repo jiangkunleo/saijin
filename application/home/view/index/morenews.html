@@ -1,0 +1,79 @@
+  <div class="newsList">
+
+    <div class="newsList-box">
+
+      <!--头-->
+      <div class="top-title">
+        <ul>
+          <li>您当前的位置：</li>
+          <li>
+            <a href="">首页 &gt;</a>
+          </li>
+          <li>
+            <a href="">信贷资讯 &gt;</a>
+          </li>
+          <li class="active">
+            <a href="">{$title}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="newsList-fl">
+
+        <ul class="newsList-item">
+        {volist name="list" id="vo"}
+          <li>
+            <a href="{:url('home/index/newd',['id'=>$vo['id']])}">
+              {$vo['title']}
+              <span>{$vo['add_time']}</span>
+            </a>
+          </li>
+        {/volist}
+        </ul>
+
+        <!--分页-->
+        共{$count}条信息，当前页为第{$currentPage}页。
+        <div class="pag">
+        {$page}
+        </div>
+
+      </div>
+
+        <div class="jh-fr">
+          <!--快速申请-->
+          <div class="quick-apply">
+
+            <h1>快速申请</h1>
+
+            <form action="{:url('home/index/apply')}" method="post">
+              <div class="quick-item">
+                <label>您的姓名：</label>
+                <input name="name" class="int" type="text" placeholder="请填写您的姓名">
+              </div>
+              <div class="quick-item">
+                <label>手机号码：</label>
+                <input name="phone" class="int" type="text" placeholder="请填写您的手机号码">
+              </div>
+              <div class="quick-item">
+                <label>所在成市：</label>
+                <input name="zone"  class="int" type="text" placeholder="例如：广州">
+              </div>
+            <div class="quick-item">
+              <input type="checkbox" name="is_agree" checked class="ckb">
+              <span>本人已阅读并同意<a href="javascript:void(0)">《赛金金服平台服务协议》</a></span>
+            </div>
+              <div class="quick-item">
+                <input type="submit"  class="btn" value="申请">
+              </div>
+            </form>
+
+            <p>提交申请后，客服会拨打您的手机，为您免费定制贷款方案。</p>
+          </div>
+        </div>
+    </div>
+
+  </div>
+
+  <script src="__home__/js/jquery-1.10.2.min.js"></script>
+  <script src="__home__/js/swiper.min.js"></script>
+  <script src="__home__/js/index.js"></script>

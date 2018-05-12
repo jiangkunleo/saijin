@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>后台左菜单栏</title>
+    <link href="__admin__/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__admin__/js/jquery.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        //导航切换
+        $(".menuson li").click(function() {
+            $(".menuson li.active").removeClass("active")
+            $(this).addClass("active");
+        });
+
+        $('.title').click(function() {
+            var $ul = $(this).next('ul');
+            $('dd').find('ul').slideUp();
+            if ($ul.is(':visible')) {
+                $(this).next('ul').slideUp();
+            } else {
+                $(this).next('ul').slideDown();
+            }
+        });
+    })
+    </script>
+</head>
+
+<body style="background:#f0f9fd;">
+    <div class="lefttop"><span></span>※ 控制面板 ※</div>
+    <dl class="leftmenu">
+        {in name= '1' value="$privilege_codes"}
+        <dd>
+            <div class="title">
+                <span><img src="__admin__/images/leftico05.png" /></span>贷款信息管理
+            </div>
+            <ul class="menuson">
+                <li>
+                    <cite></cite><a href="{:url('admin/loan/index')}" target="rightFrame">贷款信息列表</a><i></i></li>
+
+                <li>
+                    <cite></cite><a href="{:url('admin/cateline/index')}" target="rightFrame">贷款金额分类</a><i></i></li>
+                <li>
+                    <cite></cite><a href="{:url('admin/cateconfine/index')}" target="rightFrame">贷款期限分类</a><i></i></li>
+                <li>
+                    <cite></cite><a href="{:url('admin/category/index')}" target="rightFrame">贷款类型分类</a><i></i></li>
+                <li>
+                    <cite></cite><a href="{:url('admin/catework/index')}" target="rightFrame">职业身份分类</a><i></i></li>
+            </ul>
+        </dd>
+        {/in}
+        {in name= '2' value="$privilege_codes"}
+        <dd>
+            <div class="title">
+                <span><img src="__admin__/images/leftico01.png" /></span>资讯管理
+            </div>
+            <ul class="menuson">
+                <li>
+                    <cite></cite><a href="{:url('admin/news/index')}" target="rightFrame">资讯列表</a><i></i></li>
+                <li>
+                    <cite></cite><a href="{:url('admin/news/add')}" target="rightFrame">添加资讯</a><i></i></li>
+            </ul>
+        </dd>
+        {/in}
+        {in name= '3' value="$privilege_codes"}
+        <dd>
+            <div class="title">
+                <span><img src="__admin__/images/leftico02.png" /></span>轮播图管理
+            </div>
+            <ul class="menuson">
+                <li>
+                    <cite></cite><a href="{:url('admin/banner/index')}" target="rightFrame">轮播图列表</a><i></i></li>
+                <li>
+                    <cite></cite><a href="{:url('admin/banner/add')}" target="rightFrame">添加轮播图</a><i></i></li>
+            </ul>
+        </dd>
+        {/in}
+        {in name= '4' value="$privilege_codes"}
+        <dd>
+            <div class="title">
+                <span><img src="__admin__/images/leftico04.png" /></span>顾问信息管理
+            </div>
+            <ul class="menuson">
+                <li>
+                    <cite></cite><a href="{:url('admin/consultant/index')}" target="rightFrame">顾问信息列表</a><i></i></li>
+                <li>
+                    <cite></cite><a href="{:url('admin/consultant/add')}" target="rightFrame">添加顾问</a><i></i></li>
+            </ul>
+        </dd>
+        {/in}
+        {in name= '5' value="$privilege_codes"}
+        <dd>
+            <div class="title">
+                <span><img src="__admin__/images/leftico02.png" /></span>贷款申请管理
+            </div>
+            <ul class="menuson">
+                <li>
+                    <cite></cite><a href="{:url('admin/apply/index')}" target="rightFrame">贷款申请列表</a><i></i></li>
+            </ul>
+        </dd>
+        {/in}
+        {in name= '6' value="$privilege_codes"}
+        <dd>
+            <div class="title">
+                <span><img src="__admin__/images/leftico05.png" /></span>客户提问管理
+            </div>
+            <ul class="menuson">
+                <li>
+                    <cite></cite><a href="{:url('admin/answer/index')}" target="rightFrame">提问信息列表</a><i></i></li>
+            </ul>
+        </dd>
+        {/in}
+        {in name= '7' value="$privilege_codes"}
+        <dd>
+            <div class="title">
+                <span><img src="__admin__/images/leftico04.png" /></span>关于我们
+            </div>
+            <ul class="menuson">
+                <li>
+                    <cite></cite><a href="{:url('admin/about/index')}" target="rightFrame">联系方式列表</a><i></i>
+                </li>
+            </ul>
+        </dd>
+        {/in}
+        {in name= '8' value="$privilege_codes"}
+        <dd>
+            <div class="title">
+                <span><img src="__admin__/images/leftico05.png" /></span>公司图片
+            </div>
+            <ul class="menuson">
+                <li>
+                    <cite></cite><a href="{:url('admin/comimg/index')}" target="rightFrame">图片列表</a><i></i>
+                </li>
+            </ul>
+        </dd>
+        {/in}
+        {in name= '9' value="$privilege_codes"}
+        <dd>
+            <div class="title">
+                <span><img src="__admin__/images/leftico03.png" /></span>友情链接
+            </div>
+            <ul class="menuson">
+                <li>
+                    <cite></cite><a href="{:url('admin/frilink/index')}" target="rightFrame">友情链接列表</a><i></i></li>
+                <li>
+                    <cite></cite><a href="{:url('admin/frilink/add')}" target="rightFrame">添加友情链接</a><i></i></li>
+            </ul>
+        </dd> 
+        {/in}
+        {in name= '10' value="$privilege_codes"}
+        <dd>
+            <div class="title">
+                <span><img src="__admin__/images/leftico04.png" /></span>修改密码
+            </div>
+            <ul class="menuson">
+                <li>
+                    <cite></cite><a href="{:url('admin/modify/edit')}" target="rightFrame">修改密码</a><i></i></li>
+                <li>
+            </ul>
+        </dd> 
+        {/in}        
+        {in name= '11' value="$privilege_codes"}
+        <dd>
+            <div class="title">
+                <span><img src="__admin__/images/leftico06.png" /></span>用户管理
+            </div>
+            <ul class="menuson">
+                <li>
+                    <cite></cite><a href="{:url('admin/user/index')}" target="rightFrame">用户列表</a><i></i></li>
+                <li>
+                    <cite></cite><a href="{:url('admin/user/add')}" target="rightFrame">添加用户</a><i></i></li>
+            </ul>
+        </dd>
+        {/in}
+        {in name= '12' value="$privilege_codes"}
+        <dd>
+            <div class="title">
+                <span><img src="__admin__/images/leftico06.png" /></span>权限管理
+            </div>
+            <ul class="menuson">
+                <li>
+                    <cite></cite><a href="{:url('admin/group/index')}" target="rightFrame">分组列表</a><i></i></li>
+                <li>
+                    <cite></cite><a href="{:url('admin/privilege/index')}" target="rightFrame">权限列表</a><i></i></li>
+                <li>
+                    <cite></cite><a href="{:url('admin/group_privilege/index')}" target="rightFrame">分组权限列表</a><i></i></li>
+            </ul>
+        </dd> 
+        {/in}
+    </dl>
+</body>
+</html>

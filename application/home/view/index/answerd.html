@@ -1,0 +1,135 @@
+  <div class="wendaInfo">
+    <div class="wenda-box">
+      <!--头-->
+      <div class="top-title">
+        <ul>
+          <li>您当前的位置：</li>
+          <li>
+            <a href="">首页 &gt;</a>
+          </li>
+          <li>
+            <a href="">信贷问答 &gt;</a>
+          </li>
+          <li class="active">
+            <a href="">{$title}</a>
+          </li>
+        </ul>
+      </div>
+
+      <!--左边主内容-->
+      <div class="wendaInfo-fl">
+
+        <div class="wendaInfo-info">
+          <span class="fl">提问者： {$ans_data['requ_name']}</span>
+          <span class="fr">提问时间: {$ans_data['requ_time']}</span>
+        </div>
+
+        <div class="desc">
+          <p class="color">问题：{$ans_data['requ_desc']}</p>
+        </div>
+
+        <div class="answer">
+          <ul>
+
+            <li>
+              <h3>
+                <span>回复者：{$ans_data['ans_name']}</span>
+                <span></span>
+                <span>回答时间: {$ans_data['ans_time']}</span>
+              </h3>
+              <p>答：</p>
+              {$ans_data['ans_desc']|htmlspecialchars_decode}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!--侧边栏-->
+      <div class="jh-fr">
+        <!--快速申请-->
+        <div class="jh-fr">
+          <!--快速申请-->
+          <div class="quick-apply">
+
+            <h1>快速申请</h1>
+
+            <form action="{:url('home/index/apply')}" method="post">
+              <div class="quick-item">
+                <label>您的姓名：</label>
+                <input name="name" class="int" type="text" placeholder="请填写您的姓名">
+              </div>
+              <div class="quick-item">
+                <label>手机号码：</label>
+                <input name="phone" class="int" type="text" placeholder="请填写您的手机号码">
+              </div>
+              <div class="quick-item">
+                <label>所在成市：</label>
+                <input name="zone"  class="int" type="text" placeholder="例如：广州">
+              </div>
+            <div class="quick-item">
+          <input type="checkbox" name="is_agree" checked class="ckb">
+              <span>本人已阅读并同意<a href="javascript:void(0)">《赛金金服平台服务协议》</a></span>
+            </div>
+              <div class="quick-item">
+                <input type="submit"  class="btn" value="申请">
+              </div>
+            </form>
+
+            <p>提交申请后，客服会拨打您的手机，为您免费定制贷款方案。</p>
+          </div>
+        </div>
+
+
+
+        <!--贷款问答-->
+        <div class="ask">
+          <h1>贷款问答</h1>
+
+          <div class="ask-title">
+            <ul>
+              <li class="active">按揭贷款</li>
+              <li class="">消费贷款</li>
+              <li class="">经营贷款</li>
+              <li>贷款流程</li>
+            </ul>
+          </div>
+
+          <div class="ask-search">
+            <input type="text" placeholder="请输入您想了解的问题？"><button class="btn">搜索</button>
+          </div>
+
+          <div class="ask-content" style="display: block;">
+            <ul>
+              <li>
+                <a href="">• 房子抵押贷款多久来考察？</a>
+              </li>
+              <li>
+                <a href="">• 没有房产抵押能申请天津无抵押...</a>
+              </li>
+              <li>
+                <a href="">• 个体户怎么申请信用贷款？要准...</a>
+              </li>
+              <li>
+                <a href="">• 企业在东莞市可不可以办企业贷款？</a>
+              </li>
+              <li>
+                <a href="">• 企业在东莞市可不可以办企业贷款？</a>
+              </li>
+              <li>
+                <a href="">• 如何申请15的贷款？</a>
+              </li>
+              <li>
+                <a href="">• 我的公司经营5年了，想向银行...</a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="__home__/js/jquery-1.10.2.min.js"></script>
+  <script src="__home__/js/swiper.min.js"></script>
+  <script src="__home__/js/index.js"></script>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>贷款申请添加备注</title>
+    <link href="__admin__/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__admin__/js/jquery.js"></script>
+    <!-- 引入富文本编辑器 -->
+    <script type="text/javascript" charset="utf-8" src="__ed__/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__ed__/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__ed__/lang/zh-cn/zh-cn.js"></script>    
+    <style>
+        .textinput1 {
+            border-top: solid 1px #a7b5bc;
+            border-left: solid 1px #a7b5bc;
+            border-right: solid 1px #ced9df;
+            border-bottom: solid 1px #ced9df;
+            background: url(../images/inputbg.gif) repeat-x;
+            padding: 10px;
+            width: 504px;
+            height: 50px;
+            line-height: 20px;
+            overflow: hidden;
+        }
+        .tr_w {
+            width:630px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">贷款申请添加备注</a></li>
+        </ul>
+    </div>
+    <div class="formtitle">
+        <div class="formtitle">
+            <span class="current"> 填写备注信息</span>
+        </div>
+
+    <div class="rightinfo">
+        <table class="tablelist tr_w">
+            <thead>
+                <tr >
+                    <th>客&nbsp;户&nbsp;ID:</th>
+                    <th style="color:blue;">{$apply_data['id']}</th>
+                </tr>
+                <tr >
+                    <th>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</th>
+                    <th style="color:blue;">{$apply_data['name']}</th>
+                </tr>
+                <tr >
+                    <th>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区:</th>
+                    <th style="color:blue;">{$apply_data['zone']}</th>
+                </tr>
+                <tr >
+                    <th>手机号码:</th>
+                    <th style="color:blue;">{$apply_data['phone']}</th>
+                </tr>
+                <tr >
+                    <th>申请时间:</th>
+                    <th style="color:blue;">{$apply_data['add_time']}</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+        <form action="{:url('admin/apply/comment')}" method="post" >
+            <ul class="forminfo">
+                <li>
+                    <input type="hidden" name="id" value="{$apply_data['id']}" />
+                    <label>添加备注</label>
+                    <textarea name="comment" placeholder="请输入备注内容" cols="" rows="" class="textinput1">{$apply_data['comment']}</textarea>
+                </li>
+            </ul>
+            <ul>
+                <li> 
+                    <label>&nbsp;</label>                  
+                    <input name="" id="btnSubmit" type="submit" class="btn" value="添加备注" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+</html>

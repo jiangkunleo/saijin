@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>添加图片</title>
+    <link href="__admin__/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__admin__/js/jquery.js"></script>
+    <style>
+        .btn{
+            margin-left: 100px;
+        }
+
+    </style>  
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">添加图片</a></li>
+        </ul>
+    </div>
+    <div class="formtitle">
+        <div class="formtitle">
+            <span class="current"> 添加图片信息</span>
+        </div>
+        
+        <form action="{:url('admin/comimg/add')}" method="post" enctype="multipart/form-data" >
+            <ul class="forminfo">
+                <li>
+                    <label>图片名字</label>
+                    <input name="name" placeholder="请输图片名称" type="text" class="dfinput" /><i>名称不能超过200个字符，一个中文3个字符！</i></li>
+
+                <li><label>是否展示</label>
+                    <cite>
+                        <input name="is_valid" type="radio" value="Y" checked="checked" />展示&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="is_valid" type="radio" value="N" />不展示
+                    </cite>
+                </li> 
+
+                <li>
+                    <label>图片</label>
+                    <input name="image" type="file"/>
+                    <i>图片请用260*160尺寸</i>
+                </li>
+
+            </ul>
+
+            <ul>
+                <li> 
+                    <label>&nbsp;</label>                  
+                    <input name="" id="btnSubmit" type="submit" class="btn" value="添加图片" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+</html>

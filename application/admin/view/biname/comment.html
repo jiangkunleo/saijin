@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>客户公司取名信息添加备注</title>
+    <link href="__admin__/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__admin__/js/jquery.js"></script> 
+    <style>
+        .textinput1 {
+            border-top: solid 1px #a7b5bc;
+            border-left: solid 1px #a7b5bc;
+            border-right: solid 1px #ced9df;
+            border-bottom: solid 1px #ced9df;
+            background: url(../images/inputbg.gif) repeat-x;
+            padding: 10px;
+            width: 504px;
+            height: 50px;
+            line-height: 20px;
+            overflow: hidden;
+        }
+        .tr_w {
+            width:630px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">客户公司取名信息添加备注</a></li>
+        </ul>
+    </div>
+    <div class="formtitle">
+        <div class="formtitle">
+            <span class="current"> 填写备注信息</span>
+        </div>
+
+    <div class="rightinfo">
+        <table class="tablelist tr_w">
+            <thead>
+                <tr >
+                    <th>客&nbsp;户&nbsp;ID:</th>
+                    <th style="color:blue;">{$biname_data['id']}</th>
+                </tr>
+                <tr >
+                    <th>所在地区:</th>
+                    <th style="color:blue;">{$biname_data['zone']}</th>
+                </tr>
+                <tr >
+                    <th>所在行业:</th>
+                    <th style="color:blue;">{$biname_data['trade']}</th>
+                </tr>
+
+                <tr >
+                    <th>手机号码:</th>
+                    <th style="color:blue;">{$biname_data['phone']}</th>
+                </tr>
+                <tr >
+                    <th>创建时间:</th>
+                    <th style="color:blue;">{$biname_data['add_time']}</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+        <form action="{:url('admin/biname/comment')}" method="post" >
+            <ul class="forminfo">
+                <li>
+                    <input type="hidden" name="add_time" value="{$biname_data['add_time']}" />
+                    <input type="hidden" name="id" value="{$biname_data['id']}" />
+                    <label>添加备注</label>
+                    <textarea name="comment" placeholder="请输入备注内容" cols="" rows="" class="textinput1">{$biname_data['comment']}</textarea>
+                </li>
+            </ul>
+            <ul>
+                <li> 
+                    <label>&nbsp;</label>                  
+                    <input name="" id="btnSubmit" type="submit" class="btn" value="添加备注" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+</html>

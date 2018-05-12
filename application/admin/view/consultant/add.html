@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>添加顾问信息</title>
+    <link href="__admin__/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__admin__/js/jquery.js"></script>
+    <style>
+        .dfinput1 {
+            width: 75px;
+            height: 15px;
+            line-height: 15px;
+            margin-top:8px;
+        }
+        .formtitle span.current{ /* 第一个span标签默认选中，有下边框 */
+            border-bottom: solid 3px #66c9f3;
+        }
+        .formtitle span{
+            position: static; /* 静态定位，position的默认值，也就是不定位了 */
+            margin-right: 4px;
+            border: none;
+            cursor: pointer;
+        }    
+        .forminfo{
+            display: none;
+        }
+        .forminfo:first-child{
+            display: block;
+        }
+        .btn{
+            margin-left: 100px;
+        }
+        .textinput1 {
+            border-top: solid 1px #a7b5bc;
+            border-left: solid 1px #a7b5bc;
+            border-right: solid 1px #ced9df;
+            border-bottom: solid 1px #ced9df;
+            background: url(../images/inputbg.gif) repeat-x;
+            padding: 10px;
+            width: 504px;
+            height: 50px;
+            line-height: 20px;
+            overflow: hidden;
+        }
+        .textinput {
+            width: 700px;
+            height: 480px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">添加顾问信息</a></li>
+        </ul>
+    </div>
+    <div class="formtitle">
+        <div class="formtitle">
+            <span class="current"> 填写顾问信息</span>
+        </div>
+        
+        <form action="{:url('admin/consultant/add')}" method="post" enctype="multipart/form-data" >
+            <ul class="forminfo">
+                <li>
+                    <label>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</label>
+                    <input name="name" placeholder="请输入名称" type="text" class="dfinput" /><i>名称不能超过60个字符，一个中文3个字符！</i></li>
+                <li>
+                    <label>负责区域：</label>
+                    <input name="area" placeholder="请输入该顾问所负责区域" type="text" class="dfinput" /><i>区域名称不能超过120个字符，一个中文3个字符！</i></li>
+                <li>
+                    <label>座机号码：</label>
+                    <input name="tell" placeholder="请输入该顾问座机号码" type="text" class="dfinput" /><i></i></li>
+                <li>
+                    <label>个人描述：</label>
+                    <textarea name="desc" placeholder="请输入优化描述内容" cols="" rows="" class="textinput1"></textarea>
+                </li>
+
+                <li>
+                    <label>图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片：</label>
+                    <input name="image" type="file"/><i><i style="color:red;font-size:16px;">*&nbsp;</i>顾问图片尺寸请用<i style="color:red;font-size:14px;">宽100*高120px</i>！</i>
+                </li>
+
+                <li><label>是否有效：</label>
+                    <cite>
+                        <input name="is_valid" type="radio" value="Y" checked="checked" />是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="is_valid" type="radio" value="N" />否
+                    </cite>
+                </li> 
+
+            </ul>
+
+            <ul>
+                <li> 
+                    <label>&nbsp;</label>                  
+                    <input name="" id="btnSubmit" type="submit" class="btn" value="添加" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+</html>

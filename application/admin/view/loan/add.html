@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>添加贷款信息</title>
+    <link href="__admin__/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__admin__/js/jquery.js"></script>
+    <!-- 引入富文本编辑器 -->
+    <script type="text/javascript" charset="utf-8" src="__ed__/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__ed__/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__ed__/lang/zh-cn/zh-cn.js"></script>    
+    <style>
+        .dfinput1 {
+            width: 75px;
+            height: 15px;
+            line-height: 15px;
+            margin-top:8px;
+        }
+        .formtitle span.current{ /* 第一个span标签默认选中，有下边框 */
+            border-bottom: solid 3px #66c9f3;
+        }
+        .formtitle span{
+            position: static; /* 静态定位，position的默认值，也就是不定位了 */
+            margin-right: 4px;
+            border: none;
+            cursor: pointer;
+        }    
+        .forminfo{
+            display: none;
+        }
+        .forminfo:first-child{
+            display: block;
+        }
+        .btn{
+            margin-left: 100px;
+        }
+        .textinput1 {
+            border-top: solid 1px #a7b5bc;
+            border-left: solid 1px #a7b5bc;
+            border-right: solid 1px #ced9df;
+            border-bottom: solid 1px #ced9df;
+            background: url(../images/inputbg.gif) repeat-x;
+            padding: 10px;
+            width: 504px;
+            height: 50px;
+            line-height: 20px;
+            overflow: hidden;
+        }
+        .textinput {
+            width: 700px;
+            height: 320px;
+            line-height: 20px;
+        }
+        .cate{
+            width: 115px;
+       }
+        .dfinput2{
+            width: 115px;
+       }
+    </style>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">添加贷款信息</a></li>
+        </ul>
+    </div>
+    <div class="formtitle">
+        <div class="formtitle">
+            <span class="current"> 填写贷款信息</span>
+        </div>
+        
+        <form action="{:url('admin/loan/add')}" method="post" enctype="multipart/form-data" >
+            <ul class="forminfo">
+                <li>
+                    <label>出贷银行</label>
+                    <input name="bank" placeholder="请输入银行标题" type="text" class="dfinput" /><i>名称不能超过90个字符，一个中文3个字符！</i></li>
+                <li>
+                    <label>简略描述</label>
+                    <input name="desc" placeholder="请输入简略描述" type="text" class="dfinput" /><i>描述不能超过90个字符，一个中文3个字符！</i></li>
+
+                <li>
+                    <label>贷款分类</label>
+                    <select name="cate1" class="dfinput cate" id="province">
+                        {volist name="category_data" id="vo"}
+                            {if condition="$vo['pid'] eq '0'"}
+                            <option value="{$vo['id']}" >{$vo['name']}</option>
+                            {/if}
+                        {/volist}
+                    </select>（主类）
+                    <i></i>
+                    
+                    <!-- 子类分类1 -->
+                    {volist name="category_data" id="vo"}
+                        {if condition="$vo['pid'] eq '0'"}
+                            <select name="cate_son1" class="dfinput cate son" >
+                                {volist name="category_data" id="v"}
+                                    {if condition="$v['pid'] eq $vo['id']"}
+                                    <option value="{$v['id']}">{$v['name']}</option>
+                                    {/if}
+                                {/volist}
+                            </select>
+                        {/if}
+                    {/volist}
+                    （子类）
+                    <i></i>
+                    </li>
+                    <!-- 隐藏域 -->
+                    <input type="hidden" name="cate" id="cate" value="" />
+                    <input type="hidden" name="cate_son" id="cate_son" value=""/>
+
+                <li>
+                    <label>图片</label>
+                    <input name="image" type="file"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i>图片请用50*50px</i>
+                </li>
+
+                <li>
+                    <label>职业身份</label>
+                    <select name="work_type" class="dfinput">
+                        {volist name="catework_data" id="vo"}
+                        <option value="{$vo['code']}">{$vo['name']}</option>
+                        {/volist}
+                    </select>
+                    <i>借贷人所属职业</i></li>
+
+
+                <li id="compare1">
+                    <label>出贷额度</label>
+                    <select name="lines_min" class="dfinput dfinput2 lines_min">
+                        {volist name="cataline_data" id="vo"}
+                        <option value="{$vo['id']}" >{$vo['line_code']}</option>
+                        {/volist}
+                    </select>万(最小)--
+                    <i></i>
+                    <select name="lines_max" class="dfinput dfinput2 lines_max" >
+                        {volist name="cataline_data" id="vo"}
+                        <option value="{$vo['id']}" >{$vo['line_code']}</option>
+                        {/volist}
+                    </select>万(最大)
+                    <i id="com1">选择额度的范围</i>
+                </li>
+
+                <li>
+                    <label>贷款利息</label>
+                    <input name="interest" placeholder="请输入贷款利息" type="text" class="dfinput" /><i>贷款利息内容不能超过200个字符，一个中文3个字符！</i>
+                </li> 
+
+                <li>
+                    <label>放款时间</label>
+                    <input name="get_time" placeholder="请输入作者名称" type="text" class="dfinput" /><i>放款时间内容不能超过200个字符，一个中文3个字符！</i>
+                </li> 
+
+                <li id="compare2">
+                    <label>贷款期限</label>
+                    <select name="confine_min" class="dfinput dfinput2 confine_min" >
+                        {volist name="cateconfine_data" id="vo"}
+                        <option value="{$vo['id']}" >{$vo['months']}</option>
+                        {/volist}
+                    </select>月(最小)--
+                    <i></i>
+                    <select name="confine_max" class="dfinput dfinput2 confine_max" >
+                        {volist name="cateconfine_data" id="vo"}
+                        <option value="{$vo['id']}" >{$vo['months']}</option>
+                        {/volist}
+                    </select>月(最大)
+                    <i id="com2">选择期限的范围</i>
+                    </li>
+                <li>
+                    <label>还款方式</label>
+                    <input name="return_type" placeholder="请输入作者名称" type="text" class="dfinput" /><i>还款方式内容不能超过200个字符，一个中文3个字符！</i>
+                </li> 
+
+                <li>
+                    <label>申请条件</label>
+                    <textarea name="conditions" id="content" placeholder="请输入申请条件内容" cols="" rows="" class="textinput" style="padding:0px;" ></textarea>
+                </li> 
+                <li>
+                    <label>所需材料</label>
+                    <textarea name="req_file" placeholder="请输入所需材料内容" cols="" rows="" class="textinput1"></textarea>
+                </li>
+
+                <li><label>是否有效</label>
+                    <cite>
+                        <input name="is_valid" type="radio" value="Y" checked="checked" />是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="is_valid" type="radio" value="N" />否
+                    </cite>
+                </li> 
+            </ul>
+
+            <ul>
+                <li> 
+                    <label>&nbsp;</label>                  
+                    <input name="" id="btnSubmit" type="submit" class="btn" value="添加贷款信息"  />
+                </li>
+            </ul>
+        </form>
+
+        <div class="tip">
+            <div class="tiptop"><span>提示信息</span>
+                <a></a>
+            </div>
+            <div class="tipinfo">
+                <span><img src="__admin__/images/ticon.png" /></span>
+                <div class="tipright">
+                    <p>是否确认对信息的修改 ？</p>
+                    <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+                </div>
+            </div>
+            <div class="tipbtn">
+                <input name="" type="button" class="sure" value="确定" />&nbsp;
+                <input name="" type="button" class="cancel" value="取消" />
+            </div>
+        </div>
+
+    </div>
+</body>
+<!-- js代码 -->
+<script>
+   // 实例化富文本编辑器
+   var ue = UE.getEditor('content',{
+        initialFrameWidth:700  //初始化编辑器宽度,默认1000
+        ,initialFrameHeight:240  //初始化编辑器高度,默认320
+        , toolbars: [[ // 工具栏的定制
+            'fullscreen', 'source', '|', 'undo', 'redo', '|',
+            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+            'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+            'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+            'directionalityltr', 'directionalityrtl', 'indent', '|',
+            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+
+            'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+             'preview',
+        ]]
+   });
+
+$(function(){ 
+   //二级联动
+    currentShowSon=0;
+    $(document).ready(function(){
+        $("#province").change(function(){
+            $("#province option").each(function(i,o){
+                if($(this).attr("selected")){
+                    $(".son").hide();
+                    $(".son").eq(i).show();
+                    currentShowSon=i;
+                }
+            });
+        });
+        $("#province").change();
+        $(".cate").change(function(){
+            getSelectValue();
+        }); 
+
+    });
+
+    //将下拉列表选取的值动态添加到隐藏域中
+    function getSelectValue(){
+        $("#cate").attr("value",$("#province").val());
+        $(".son").each(function(i,o){
+            if(i == currentShowSon){
+                $("#cate_son").attr("value",$(".son").eq(i).val());
+            }
+        });
+    }    
+
+    flog = 2;
+    flog1 = 2;
+    //监听最大额度是否大于最小额度
+    $('#compare1').on('change','select',function(){
+        var line_min = parseInt($(".lines_min").find("option:selected").text());
+        var line_max = parseInt($(".lines_max").find("option:selected").text());
+        if(line_max < line_min) {
+            $('#com1').html('*最小值需小于等于最大值');
+            $('#com1').attr('style','color:red;');
+            flog1 = 1;
+            flog_ft();
+        }
+        if(line_max >= line_min) {
+            $('#com1').html('选择正确');
+            $('#com1').attr('style','color:green;');
+            flog1 = 2;
+            flog_ft();
+        }
+    });
+
+    flog2 = 2;
+    //监听最大期限是否大于最小期限
+    $('#compare2').on('change','select',function(){
+        var confine_min = parseInt($(".confine_min").find("option:selected").text());
+        var confine_max = parseInt($(".confine_max").find("option:selected").text());
+        if(confine_max < confine_min) {
+            $('#com2').html('*最小值需小于等于最大值');
+            $('#com2').attr('style','color:red;');
+            flog2 = 1;
+            flog_ft();
+        }
+        if(confine_max >= confine_min) {
+            $('#com2').html('选择正确');
+            $('#com2').attr('style','color:green;');
+            flog2 = 2;
+            flog_ft();
+        }
+    });
+
+    $('#btnSubmit').on('click',function(){
+        flog_ft();
+        //如果flog为2 则可以提交
+        if(flog != 2) {
+            alert('请按红色错误提示改正，否则不可以提交！');
+            return false;
+        }
+
+        
+        getSelectValue();
+    });
+
+    
+    function flog_ft() {
+        if(flog1==2 && flog2==2) {
+            flog = 2;
+        }else{
+            flog = 1;
+        }
+    }
+
+
+});
+</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>编辑分组</title>
+    <link href="__admin__/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__admin__/js/jquery.js"></script>
+    <style>
+        .dfinput1 {
+            width: 75px;
+            height: 15px;
+            line-height: 15px;
+            margin-top:8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">编辑分组</a></li>
+        </ul>
+    </div>
+    <div class="formbody">
+        <div class="formtitle"><span>基本信息</span></div>
+        <form action="{:url('admin/group/edit')}" method="post">
+            <ul class="forminfo">
+                <li>
+                    <label>组&nbsp;名&nbsp;称</label>
+                    <input type="hidden" name="code" value="{$code_group_data['code']}"/>
+                    <input name="name" value="{$code_group_data['name']}" type="text" class="dfinput" /><i>名称不能超过100个字符,1个汉字3个字符。</i></li>
+                <li>
+                    <label>组&nbsp;状&nbsp;态</label>
+                    {if condition="$code_group_data['is_valid'] eq 'Y'"}
+                        有效<input name="is_valid"  type="radio"  value='Y' class="dfinput1" checked="checked" />
+                        无效<input name="is_valid"  type="radio"  value='N' class="dfinput1" />
+                    {elseif condition="$code_group_data['is_valid'] eq 'N'" /}
+                        有效<input name="is_valid"  type="radio"  value='Y' class="dfinput1" />
+                        无效<input name="is_valid"  type="radio"  value='N' class="dfinput1" checked="checked" />
+                    {/if}
+                </li>
+        
+                <li>
+                    <label>&nbsp;</label>
+                    <input  id="btnSubmit" type="submit" class="btn" value="更改分组" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+
+</html>

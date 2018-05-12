@@ -1,0 +1,436 @@
+
+  <!---->
+  <div class="banner">
+    <div class="banner-box">
+      <!--轮播插件-->
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+        {volist name="banner_data" id="vo"}
+          <div class="swiper-slide" style="background: url({$vo['image']}) no-repeat center"></div>
+        {/volist}
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+
+    <!--贷款申请-->
+    <div class="apply">
+      <div class="apply-box">
+      <form action="{:url('home/index/apply')}" method="post">
+        <h3><span class="s_1"></span>贷款申请<span class="s_2"></span></h3>
+        <h4>21-55周岁可以申请</h4>
+        <div class="int-name">
+          <input name="name" type="text" placeholder="请输入您的姓名" />
+        </div>
+        <div class="int-phone">
+          <input name="phone" type="text" placeholder="请输入您的手机号码" />
+        </div>
+        <div class="int-home">
+          <input name="zone" type="text" placeholder="请输入您的所在城市" />
+        </div>
+        <div class="quick-item" style="height: 24px;background-color: transparent;margin-bottom: 0">
+
+          <input type="checkbox" name="is_agree" checked class="ckb">
+          <span>本人已阅读并同意<a href="javascript:void(0)">《赛金金服平台服务协议》</a></span>
+        </div>
+        <button type="submit" class="btn">立即申请</button>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <!---->
+<div class="section">
+  <div class="section-box">
+    <!--左边主内容-->
+    <div class="main">
+      <!--主分类-->
+      {volist name="main_cate" id="main_cate_list" key='k'}
+      <div class="gather credit{$k}">
+        <h1>{$main_cate_list['name']}</h1>
+        <div class="gather-title">
+          <ul>
+            {volist name="son_cate" id="loan_cate_son_name_list"}
+            {if condition="$main_cate_list['id'] eq $loan_cate_son_name_list['cate_son_pid']"}
+              <li>{$loan_cate_son_name_list['cate_son_name']}</li>
+            {/if}
+            {/volist}
+          </ul>
+          <a href="{:url('home/index/credit')}">更多&gt;</a>
+        </div>
+        <div class="main-box">
+          {volist name="son_cate" id="loan_cate_son_name_list"}
+          {if condition="$main_cate_list['id'] eq $loan_cate_son_name_list['cate_son_pid']"}
+          <div class="box-item" style="display: block">
+            <ul class="gather-item">
+              {volist name="loan_list" id="vo"}
+              {if condition="$vo['cate_son'] eq $loan_cate_son_name_list['cate_son_id'] and $vo['cate'] eq $main_cate_list['id']"}
+                <li>
+                  <div class="box-img">
+                    <img src="{$vo['image']}">
+                  </div>
+                  <div class="box-desc">
+                  {$vo['bank']}&nbsp;&nbsp;&nbsp;&nbsp;{$vo['desc']}
+                  </div>
+                  <a href="{:url('home/index/detail',['id'=>$vo['id']])}" class="more">详情>></a>
+                </li>
+              {/if}
+              {/volist}
+            </ul>
+          </div>
+          {/if}
+          {/volist}
+        </div>
+      </div>
+      {/volist}
+
+      <!--贷款攻略-->
+      <div class="gather strategy">
+        <h1>贷款攻略</h1>
+        <div class="gather-title">
+          <ul>
+            <li class="active">新手贷款</li>
+            <li>无抵押贷</li>
+            <li>经营贷款</li>
+            <li>政策法规</li>
+            <li>个人贷款</li>
+            <li>购车贷款</li>
+            <li>房贷资讯</li>
+            <li>行业动态</li>
+            <li>信用卡资讯</li>
+          </ul>
+        </div>
+        <div class="main-box">
+          <div class="box-item" style="display: block">
+            <div class="strategy-img">
+              <img src="__home__/images/strategy_01.jpg">
+            </div>
+            <div class="strategy-desc">
+            <!-- 新手贷款 -->
+              <ul>
+              {volist name="zx1_data" id="vo"}
+                <li><a href="{:url('home/index/newd',['id'=>$vo['id']])}">• {$vo['title']}</a></li>
+              {/volist}
+              </ul>
+            </div>
+          </div>
+
+          <div class="box-item">
+            <div class="strategy-img">
+              <img src="__home__/images/strategy_01.jpg">
+            </div>
+            <div class="strategy-desc">
+              <ul>
+              {volist name="zx2_data" id="vo"}
+                <li><a href="{:url('home/index/newd',['id'=>$vo['id']])}">• {$vo['title']}</a></li>
+              {/volist}
+              </ul>
+            </div>
+          </div>
+          <div class="box-item">
+
+            <div class="strategy-img">
+              <img src="__home__/images/strategy_01.jpg">
+            </div>
+            <div class="strategy-desc">
+              <ul>
+              {volist name="zx3_data" id="vo"}
+                <li><a href="{:url('home/index/newd',['id'=>$vo['id']])}">• {$vo['title']}</a></li>
+              {/volist}
+              </ul>
+            </div>
+          </div>
+          <div class="box-item">
+
+            <div class="strategy-img">
+              <img src="__home__/images/strategy_01.jpg">
+            </div>
+            <div class="strategy-desc">
+              <ul>
+              {volist name="zx4_data" id="vo"}
+                <li><a href="{:url('home/index/newd',['id'=>$vo['id']])}">• {$vo['title']}</a></li>
+              {/volist}
+              </ul>
+            </div>
+          </div>
+          <div class="box-item">
+
+            <div class="strategy-img">
+              <img src="__home__/images/strategy_01.jpg">
+            </div>
+            <div class="strategy-desc">
+              <ul>
+              {volist name="zx5_data" id="vo"}
+                <li><a href="{:url('home/index/newd',['id'=>$vo['id']])}">• {$vo['title']}</a></li>
+              {/volist}
+              </ul>
+            </div>
+          </div>
+          <div class="box-item">
+
+            <div class="strategy-img">
+              <img src="__home__/images/strategy_01.jpg">
+            </div>
+            <div class="strategy-desc">
+              <ul>
+              {volist name="zx6_data" id="vo"}
+                <li><a href="{:url('home/index/newd',['id'=>$vo['id']])}">• {$vo['title']}</a></li>
+              {/volist}
+              </ul>
+            </div>
+          </div>
+          <div class="box-item">
+
+            <div class="strategy-img">
+              <img src="__home__/images/strategy_01.jpg">
+            </div>
+            <div class="strategy-desc">
+              <ul>
+              {volist name="zx7_data" id="vo"}
+                <li><a href="{:url('home/index/newd',['id'=>$vo['id']])}">• {$vo['title']}</a></li>
+              {/volist}
+              </ul>
+            </div>
+          </div>
+          <div class="box-item">
+            <div class="strategy-img">
+              <img src="__home__/images/strategy_01.jpg">
+            </div>
+
+            <div class="strategy-desc">
+              <ul>
+              {volist name="zx8_data" id="vo"}
+                <li><a href="{:url('home/index/newd',['id'=>$vo['id']])}">• {$vo['title']}</a></li>
+              {/volist}
+              </ul>
+            </div>
+          </div>
+          <div class="box-item">
+
+            <div class="strategy-img">
+              <img src="__home__/images/strategy_01.jpg">
+            </div>
+            <div class="strategy-desc">
+              <ul>
+              {volist name="zx9_data" id="vo"}
+                <li><a href="{:url('home/index/newd',['id'=>$vo['id']])}">• {$vo['title']}</a></li>
+              {/volist}
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+      <!--侧边栏-->
+      <div class="sidebar">
+        <!--快速查找-->
+        <div class="bg find">
+          <h3>快速查找贷款</h3>
+          <form action="{:url('home/index/credit')}" method="get"  target="_blank">
+
+            <div class="form-item">
+              <div class="label">职业身份</div>
+              <div class="select">
+                <div class="select-val">
+                  <span>不限</span>
+                  <i></i>
+                </div>
+                <ul class="select-list">
+                  <input type="hidden" name="work_type_id" value="">
+                  <input type="hidden" name="work_type_name" value="">
+                  <li >不限</li>
+                  {volist name="work_cate_data" id="vo"}
+                  <li class="self_w" data-id="{$vo['code']}" data-name="{$vo['name']}" >{$vo['name']}</li>
+                  {/volist}
+                </ul>
+              </div>
+            </div>
+
+            <div class="form-item">
+              <div class="label">贷款金额</div>
+              <div class="select">
+                <div class="select-val">
+                  <span>不限</span>
+                  <i></i>
+                </div>
+                <ul class="select-list">
+                  <input type="hidden" name="lines_id" value="">
+                  <input type="hidden" name="lines_name" value="">
+                  <li>不限</li>
+                  {volist name="lines_cate_data" id="vo"}
+                  <li class="self_l" data-id="{$vo['id']}"  data-name="{$vo['line_code']}">{$vo['line_code']}万</li>
+                  {/volist}
+                </ul>
+              </div>
+            </div>
+
+            <div class="form-item">
+              <div class="label">贷款期限</div>
+              <div class="select">
+                <div class="select-val">
+                  <span>不限</span>
+                  <i></i>
+                </div>
+
+                <ul class="select-list">
+                  <input type="hidden" name="confine_id" value="">
+                  <input type="hidden" name="confine_name" value="">
+                  <li>不限</li>
+                  {volist name="confine_cate_data" id="vo"}
+                  <li class="self_c" data-id="{$vo['id']}" data-name="
+                  {if condition="$vo['months'] lt 12"}
+                  {$vo['months']}个月
+                  {elseif condition="$vo['months'] egt 12"/}
+                  {$vo['months']/12|floor}年
+                  {/if}
+                  ">
+                  {if condition="$vo['months'] lt 12"}
+                  {$vo['months']}个月
+                  {elseif condition="$vo['months'] egt 12"/}
+                  {$vo['months']/12|floor}年
+                  {/if}
+                  </li>
+                  {/volist}
+                </ul>
+              </div>
+            </div>
+
+            <button  type="submit" class="btn">搜索</button>
+          </form>
+          <p>60家合作银行&nbsp;&nbsp;200多信贷产品</p>
+        </div>
+
+        <!--贷款计算-->
+        <div class="bg count">
+          <h3>贷款计算器</h3>
+          <div class="count-box">
+            <ul>
+              <li>
+                <a href="">
+                  <i class="s-1"></i>
+                  <span>房贷</span>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <i class="s-2"></i>
+                  <span>车贷</span>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <i  class="s-3"></i>
+                  <span>工薪贷</span>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <i  class="s-4"></i>
+                  <span>经营贷</span>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <i  class="s-5"></i>
+                  <span>信用卡</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!--贷款问答-->
+        <div class="ask">
+          <h1>贷款问答</h1>
+          <div class="ask-title">
+            <ul>
+              <li class="active">按揭贷款</li>
+              <li>消费贷款</li>
+              <li>经营贷款</li>
+              <li>贷款流程</li>
+            </ul>
+          </div>
+          <div class="ask-search">
+            <form action="{:url('home/index/searchs')}" method="get" >
+              <input type="text" name="requ_desc"  placeholder="请输入您想了解的问题 ?">
+              <button  type="submit" class="btn" >搜索</button>
+            </form>
+          </div>
+
+
+          <div class="ask-content">
+            <ul>
+              {volist name="answer_data" id="vo"}
+              <li>
+                <a target="view_frame" href="{:url('home/index/answerd',['id'=>$vo['id']])}">• {$vo['requ_desc']} </a>
+              </li>
+              {/volist}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--优秀顾问-->
+    <div class="counselor">
+      <h1>优秀顾问</h1>
+      <div class="counselor-box">
+        <ul>
+        {volist name="consultant_data" id="vo"}
+          <li>
+            <a href="">
+              <div class="counselor-pic">
+                <img src="{$vo['image']}">
+              </div>
+              <div class="counselor-desc">
+                <h3>{$vo['name']}<span>受理{$vo['area']}业务</span></h3>
+                <p>{$vo['desc']}</p>
+                <h6><i></i>{$vo['tell']}</h6>
+              </div>
+            </a>
+          </li>
+        {/volist}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="__home__/js/jquery-1.10.2.min.js"></script>
+  <script src="__home__/js/swiper.min.js"></script>
+  <script src="__home__/js/index.js"></script>
+  <script>
+    // 轮播
+    var swiper = new Swiper('.swiper-container', {
+      pagination: '.swiper-pagination',
+      nextButton: '.swiper-button-next',
+      prevButton: '.swiper-button-prev',
+      autoplay: 3000,
+      paginationClickable: true,
+      loop: true
+    });
+
+  //下拉选项    
+  $(function(){
+    $('.form-item').on('click','.select-val',function(e){
+      $(this).siblings('.select-list').css('display','block');
+      $(document).one("click", function(){
+        $(".select-list").hide();
+      });
+      e.stopPropagation();
+    });
+    $('.form-item .select-list').on('click','li',function(){
+      $(this).parent().css('display','none');
+      $(this).parent().siblings().children('span').text($(this).text());
+      //点击当前，将当前ID加入到input中，用于传值
+      $(this).parent().children('input').eq(0).val($(this).attr('data-id'));
+      //点击当前，将当前name加入到input中，用于传值
+      $(this).parent().children('input').eq(1).val($(this).attr('data-name'));
+    })
+  });    
+  </script>

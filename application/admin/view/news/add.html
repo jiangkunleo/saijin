@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>添加资讯</title>
+    <link href="__admin__/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__admin__/js/jquery.js"></script>
+    <!-- 引入富文本编辑器 -->
+    <script type="text/javascript" charset="utf-8" src="__ed__/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__ed__/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__ed__/lang/zh-cn/zh-cn.js"></script>    
+    <style>
+        .dfinput1 {
+            width: 75px;
+            height: 15px;
+            line-height: 15px;
+            margin-top:8px;
+        }
+        .formtitle span.current{ /* 第一个span标签默认选中，有下边框 */
+            border-bottom: solid 3px #66c9f3;
+        }
+        .formtitle span{
+            position: static; /* 静态定位，position的默认值，也就是不定位了 */
+            margin-right: 4px;
+            border: none;
+            cursor: pointer;
+        }    
+        .forminfo{
+            display: none;
+        }
+        .forminfo:first-child{
+            display: block;
+        }
+        .btn{
+            margin-left: 100px;
+        }
+        .textinput1 {
+            border-top: solid 1px #a7b5bc;
+            border-left: solid 1px #a7b5bc;
+            border-right: solid 1px #ced9df;
+            border-bottom: solid 1px #ced9df;
+            background: url(../images/inputbg.gif) repeat-x;
+            padding: 10px;
+            width: 504px;
+            height: 50px;
+            line-height: 20px;
+            overflow: hidden;
+        }
+        .textinput {
+            width: 700px;
+            height: 480px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">添加资讯</a></li>
+        </ul>
+    </div>
+    <div class="formtitle">
+        <div class="formtitle">
+            <span class="current"> 填写资讯信息</span>
+        </div>
+        
+        <form action="{:url('admin/news/add')}" method="post" enctype="multipart/form-data" >
+            <ul class="forminfo">
+                <li>
+                    <label>标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题</label>
+                    <input name="title" placeholder="请输入资讯标题" type="text" class="dfinput" /><i>名称不能超过200个字符，一个中文3个字符！</i></li>
+
+                <li>
+                    <label>资讯分类</label>
+                    <select name="cate" class="dfinput">
+                        <option value="1">新手贷款</option>
+                        <option value="2">无抵押贷款</option>
+                        <option value="3">经营贷款</option>
+                        <option value="4">政策法规</option>
+                        <option value="5">个人贷款</option>
+                        <option value="6">购车贷款</option>
+                        <option value="7">房贷资讯</option>
+                        <option value="8">行业动态</option>
+                        <option value="9">信用卡资讯</option>
+                    </select>
+                    <i></i></li>
+
+                <li>
+                    <label>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者</label>
+                    <input name="author" placeholder="请输入作者名称" type="text" class="dfinput" /><i>作者名称不能超过200个字符，一个中文3个字符！</i>
+                </li> 
+
+                <li><label>设置热门</label>
+                    <cite>
+                        <input name="is_hot" type="radio" value="N"  checked="checked" />不设置&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="is_hot" type="radio" value="Y"/>热门
+                    </cite>
+                </li> 
+                <li><label>是否有效</label>
+                    <cite>
+                        <input name="is_valid" type="radio" value="Y" checked="checked" />是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="is_valid" type="radio" value="N" />否
+                    </cite>
+                </li> 
+
+                <li>
+                    <label>图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片</label>
+                    <input name="image" type="file"/>
+                </li>
+
+                <li>
+                    <label>资讯内容</label>
+                    <textarea name="content" id="content" placeholder="请输入资讯内容" cols="" rows="" class="textinput" style="padding:0px;" ></textarea>
+                </li> 
+
+            </ul>
+
+            <ul>
+                <li> 
+                    <label>&nbsp;</label>                  
+                    <input name="" id="btnSubmit" type="submit" class="btn" value="添加资讯" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+<!-- js代码 -->
+<script>
+   // 实例化富文本编辑器
+   var ue = UE.getEditor('content',{
+        initialFrameWidth:700  //初始化编辑器宽度,默认1000
+        ,initialFrameHeight:400  //初始化编辑器高度,默认320
+        , toolbars: [[ // 工具栏的定制
+            'fullscreen', 'source', '|', 'undo', 'redo', '|',
+            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+            'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+            'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+            'directionalityltr', 'directionalityrtl', 'indent', '|',
+            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+
+            'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+             'preview',
+        ]]
+   });
+
+</script>
+</html>

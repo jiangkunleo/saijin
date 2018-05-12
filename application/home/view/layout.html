@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>赛金金服-{$title}</title>
+  <link rel="stylesheet" href="__home__/css/commom.css">
+  <link rel="stylesheet" href="__home__/css/swiper.min.css">
+  <link rel="stylesheet" href="__home__/css/index.css">
+  <style>
+  .list-desc{
+    width: 515px;
+  }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-box">
+
+      <div class="header-fl fl">
+
+        <div class="header-logo fl">
+          <img src="__home__/images/logo.png">
+        </div>
+
+<!--         <div class="region fl">
+          <select>
+            <option value="gz">广州</option>
+            <option value="bj">北京</option>
+            <option value="gz">上海</option>
+            <option value="sz">深圳</option>
+          </select>
+        </div> -->
+      </div>
+
+      <div class="header-fr fr">
+        <div class="hot-line">
+          <i></i>
+          <span>贷款热线：</span>
+          <span class="re">{$some['tel']['value']}</span>
+        </div>
+        <div class="nav">
+          <ul>
+            <li class="active">
+              <a href="{:url('home/index/index')}">首&nbsp;&nbsp;页</a>
+            </li>
+            <li>
+              <a href="{:url('home/index/credit')}">信用贷</a>
+            </li>
+            <li>
+              <a href="{:url('home/index/house')}">房抵贷</a>
+            </li>
+            <li>
+              <a href="{:url('home/index/car')}">车抵贷</a>
+            </li>
+            <li>
+              <a href="{:url('home/index/strategy')}">贷款攻略</a>
+            </li>
+            <li>
+              <a href="{:url('home/index/answers')}">贷款问答</a>
+            </li>
+            <li>
+              <a href="{:url('home/index/about')}">关于赛金</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 公共头部 -->
+ {__CONTENT__}
+    <!--公共底部-->
+  <div class="footer">
+    <div class="footer-box">
+
+      <div class="footer-fl">
+        <i></i>
+        <div class="fl-desc">
+          <h3>{$some['tel']['value']}</h3>
+          <span>服务时间&nbsp;&nbsp;{$some['service_time']['value']}</span>
+        </div>
+      </div>
+
+      <div class="footer-middle">
+
+        <div class="links">
+          <ul>
+          {volist name="some.frilink" id="vo"}
+            <li>
+              <a href="{$vo['url']}">{$vo['name']}</a>
+            </li>
+          {/volist}
+          </ul>
+        </div>
+
+        <p class="copyright">2010-2017 版权所有 &copy; {$some['icp']['value']}</p>
+
+        <p class="site">地址：{$some['address']['value']}</p>
+
+        <p class="com">{$some['company_name']['value']}</p>
+      </div>
+
+      <div class="footer-fr">
+        <ul>
+          <li>
+            <img src="__home__/images/code.jpg">
+            <span>微信订阅号</span>
+          </li>
+          <li>
+            <img src="__home__/images/code.jpg">
+            <span>手机APP</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!--弹框-->
+  <div class="agreement">
+
+    <div class="agre-inner">
+
+      <h3>赛金金服用户在线申请协议 <span class="close">&times;</span></h3>
+
+      <div class="txt-inner">
+        <p>1.1助贷网的具体服务内容由我们根据实际情况提供，包括但不限于信息、图片、文章、评论、积分抽奖活动等，我们将定期或不定期根据用户的意愿以电子邮件、短信、电话的方式为用户提供活动</p>
+        <h6>一、服务内容</h6>
+        <p>1.2助贷网服务仅供个人用户使用。除我们书面同意，您或其他用户均不得将助贷网上的任何信息用于商业目的。</p>
+        <p>2.3 您已明确授权，为提供服务、履行协议、解决争议、保障交易安全等目的，我们对您提供的、我们自行收集的及通过第三方收集的您的个人信息、您申请服务时的相关信息、您在使用服务时储存在助贷网的非公开内容以及您的其他个人资料（以下简称“个人资料”）享有留存、整理加工、使用和披露的权利，具体方式包括但不限于： </p>
+        <dl>
+          <dd>（1）出于为您提供服务的需要在本网站公示您的个人资料；</dd>
+          <dd>（1）出于为您提供服务的需要在本网站公示您的个人资料；</dd>
+          <dd>（1）出于为您提供服务的需要在本网站公示您的个人资料；</dd>
+          <dd>（1）出于为您提供服务的需要在本网站公示您的个人资料；</dd>
+        </dl>
+        <p>（1）出于为您提供服务的需要在本网站公示您的个人资料；</p>
+        <p>2.3 您已明确授权，为提供服务、履行协议、解决争议、保障交易安全等目的，我们对您提供的、我们自行收集的及通过第三方收集的您的个人信息、您申请服务时的相关信息、您在使用服务时储存在助贷网的非公开内容以及您的其他个人资料（以下简称“个人资料”）享有留存、整理加工、使用和披露的权利，具体方式包括但不限于： </p>
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!--内容-->
+<div class="info">
+
+  <div class="info-box">
+
+    <!--头-->
+    <div class="top-title">
+      <ul>
+        <li>您当前的位置：</li>
+        <li>
+          <a href="">首页 &gt;</a>
+        </li>
+        <li>
+          <a href="">信贷产品 &gt;</a>
+        </li>
+        <li class="active">
+          <a href="">{$current_loan['bank']}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="info-fl">
+
+      <h1>{$current_loan['bank']}</h1>
+
+      <div class="info-desc">
+
+        <div class="info-desc-fl">
+
+          <p>
+            <strong>额度范围：</strong>
+            <span>{$current_loan['lines_min_name']}～{$current_loan['lines_max_name']}万元</span>
+          </p>
+
+          <p>
+            <strong>贷款利息：</strong>
+            <span>{$current_loan['interest']}</span>
+          </p>
+
+          <p>
+            <strong>放款时间：</strong>
+            <span>{$current_loan['get_time']}</span>
+          </p>
+
+          <p>
+            <strong>贷款期限：</strong>
+            <span>{$current_loan['confine_min_name']}~{$current_loan['confine_max_name']}个月</span>
+          </p>
+
+          <p>
+            <strong>还款方式：</strong>
+            <span>{$current_loan['return_type']}</span>
+          </p>
+
+        </div>
+
+        <div class="info-desc-fr">
+          <h2>成功申请<span>89</span>人</h2>
+          <a href="" class="btn">免费申请</a>
+          <p>
+            评级：
+            <span class="start"></span>
+            <span class="start"></span>
+            <span class="start"></span>
+            <span class="start"></span>
+            <span class="start"></span>
+          </p>
+        </div>
+
+      </div>
+
+      <div class="info-details">
+        <h3>产品详情列表</h3>
+        <div class="product-details">
+          <h5>申请条件</h5>
+          {$current_loan['conditions']|htmlspecialchars_decode}
+          <h5>所需材料</h5>
+          <p>{$current_loan['req_file']}</p>
+
+          <h6>*相关信息由助贷网收集，不保证完全准确，请您以信贷员咨询结果为准</h6>
+        </div>
+        <a href="" class="btn">免费申请</a>
+      </div>
+
+    </div>
+
+    <div class="jh-fr">
+      <!--热门文章-->
+      <div class="hot-article">
+
+        <h3><span>热门文章</span></h3>
+
+        <div class="hot-content">
+          <ul>
+            <li>
+              <a href="">• 蚂蚁借呗的利息到底高不高？</a>
+            </li>
+            <li>
+              <a href="">• 0首付0利息购车有太多坑...</a>
+            </li>
+            <li>
+              <a href="">• 揭秘小额贷款公司21种骗术...必看！</a>
+            </li>
+            <li>
+              <a href="">• 紧急！认清不法行为，谨防网络诈骗</a>
+            </li>
+            <li>
+              <a href="">• 2017年哪个银行消费贷款利率最低？</a>
+            </li>
+            <li>
+              <a href="">• 蚂蚁借呗VS微粒贷，到底谁更牛！</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--快速申请-->
+          <div class="quick-apply">
+
+            <h1>快速申请</h1>
+
+            <form action="{:url('home/index/apply')}" method="post">
+              <div class="quick-item">
+                <label>您的姓名：</label>
+                <input name="name" class="int" type="text" placeholder="请填写您的姓名">
+              </div>
+              <div class="quick-item">
+                <label>手机号码：</label>
+                <input name="phone" class="int" type="text" placeholder="请填写您的手机号码">
+              </div>
+              <div class="quick-item">
+                <label>所在成市：</label>
+                <input name="zone"  class="int" type="text" placeholder="例如：广州">
+              </div>
+            <div class="quick-item">
+              <input type="checkbox" name="is_agree" checked class="ckb">
+              <span>本人已阅读并同意<a href="javascript:void(0)">《赛金金服平台服务协议》</a></span>
+            </div>
+              <div class="quick-item">
+                <input type="submit"  class="btn" value="申请">
+              </div>
+            </form>
+
+            <p>提交申请后，客服会拨打您的手机，为您免费定制贷款方案。</p>
+          </div>
+    </div>
+
+  </div>
+</div>
+
+  <script src="__home__/js/jquery-1.10.2.min.js"></script>
+  <script src="__home__/js/swiper.min.js"></script>
+  <script src="__home__/js/index.js"></script>

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>添加轮播图</title>
+    <link href="__admin__/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__admin__/js/jquery.js"></script> 
+    <style>
+        .dfinput1 {
+            width: 75px;
+            height: 15px;
+            line-height: 15px;
+            margin-top:8px;
+        }
+        .formtitle span.current{ /* 第一个span标签默认选中，有下边框 */
+            border-bottom: solid 3px #66c9f3;
+        }
+        .formtitle span{
+            position: static; /* 静态定位，position的默认值，也就是不定位了 */
+            margin-right: 4px;
+            border: none;
+            cursor: pointer;
+        }    
+        .forminfo{
+            display: none;
+        }
+        .forminfo:first-child{
+            display: block;
+        }
+        .btn{
+            margin-left: 100px;
+        }
+        .textinput1 {
+            border-top: solid 1px #a7b5bc;
+            border-left: solid 1px #a7b5bc;
+            border-right: solid 1px #ced9df;
+            border-bottom: solid 1px #ced9df;
+            background: url(../images/inputbg.gif) repeat-x;
+            padding: 10px;
+            width: 504px;
+            height: 50px;
+            line-height: 20px;
+            overflow: hidden;
+        }
+        .textinput {
+            width: 700px;
+            height: 480px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">添加轮播图</a></li>
+        </ul>
+    </div>
+    <div class="formtitle">
+        <div class="formtitle">
+            <span class="current"> 填写轮播图信息</span>
+        </div>
+        
+        <form action="{:url('admin/banner/add')}" method="post" enctype="multipart/form-data" >
+            <ul class="forminfo">
+                <li>
+                    <label>广告名称</label>
+                    <input name="name" placeholder="请输入广告名称" type="text" class="dfinput" /><i>名称不能超过100个字符，一个中文3个字符！</i>
+                </li>
+
+                <li>
+                    <label>链接地址</label>
+                    <input name="link_url" placeholder="请输入链接地址！" type="text" class="dfinput" /><i>点击轮播图跳转的页面地址，请用正确的网址！</i>
+                </li> 
+
+                <li>
+                    <label>图片</label>
+                    <input name="image" type="file"/><i><i style="color:red;font-size:16px;">*&nbsp;</i>轮播图片尺寸请用<i style="color:red;font-size:14px;">1350*420px</i>！</i>
+                </li>
+
+                <li>
+                    <label>轮播排序</label>
+                    <input name="order" placeholder="请输入数字！" type="text" class="dfinput" /><i>轮播排序，序号请用大于0的整数！</i>
+                </li> 
+
+                <li><label>是否启用</label>
+                    <cite>
+                        <input name="is_valid" type="radio" value="Y" checked="checked" />是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="is_valid" type="radio" value="N" />否
+                    </cite>
+                </li> 
+ 
+
+                <li>
+                    <label>所用终端</label>
+                    <cite>
+                        <input name="type" type="radio" value="1" checked="checked" />电脑端&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="type" type="radio" value="0" />移动端
+                    </cite>
+                </li> 
+            </ul>
+
+            <ul>
+                <li> 
+                    <label>&nbsp;</label>                  
+                    <input name="" id="btnSubmit" type="submit" class="btn" value="添加轮播图" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+<!-- js代码 -->
+<script>
+    // // 选项卡（新闻添加内容分块）
+    // $('.formtitle span').click(function(){
+    //    // 当前被点击的span 添加 current样式，其他的span兄弟 移除 current 样式 
+    //    $(this).addClass('current').siblings().removeClass('current');
+    //    // alert( $(this).index() );  // 获取当前标签的序号
+    //    // 让和当前被点击的标签序号对应的ul显示出来，然后其他的ul隐藏掉
+    //    $('.forminfo').eq( $(this).index() ).show().siblings('.forminfo').hide();
+    // });
+</script>
+</html>

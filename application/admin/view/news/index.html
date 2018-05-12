@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>资讯列表页</title>
+    <link href="__admin__/css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__admin__/js/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $(".click").click(function() {
+            $(".tip").fadeIn(200);
+        });
+
+        $(".tiptop a").click(function() {
+            $(".tip").fadeOut(200);
+        });
+
+        $(".sure").click(function() {
+            $(".tip").fadeOut(100);
+        });
+
+        $(".cancel").click(function() {
+            $(".tip").fadeOut(100);
+        });
+
+    });
+    </script>
+    <style>
+        .lili{
+            line-height: 20px;
+            height: 20px;
+            border: solid 1px #d3dbde;
+            float: left;
+            padding-right: 10px;
+            margin-right: 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .pagin .pagination{
+                position: absolute;
+                right: 12px;
+                top: 0;
+                display: block;
+                margin: 0;
+                padding: 0;
+                list-style: none;    
+                font-size: 9pt;
+                border: 0;
+                -webkit-margin-before: 1em;
+                -webkit-margin-after: 1em;
+                -webkit-margin-start: 0px;
+                -webkit-margin-end: 0px;
+                -webkit-padding-start: 40px;
+        }
+        .pagin .pagination li{
+            font-family: '微软雅黑';
+            font-size: 9pt;
+            float: left;
+            display: block;
+            list-style: none;
+            border: 0; 
+            margin: 0;
+            padding: 0;
+            text-align: -webkit-match-parent;  
+        }
+        .pagin .pagination li a{
+            float: left;
+            width: 31px;
+            height: 28px;
+            border: 1px solid #DDD;
+            text-align: center;
+            line-height: 30px;
+            border-left: none;
+            color: #3399d5;
+            text-decoration: none;
+            cursor: auto;
+        }        
+        .pagin .pagination .active span{
+            background: #f5f5f5;
+            cursor: default;
+            color: #737373;
+            float: left;
+            width: 31px;
+            height: 28px;
+            border: 1px solid #DDD;
+            text-align: center;
+            line-height: 30px;
+            border-left: none;
+            text-decoration: none;
+        }
+        .pagin .pagination .disabled span{
+            background: #f5f5f5;
+            cursor: default;
+            color: #737373;
+            float: left;
+            width: 31px;
+            height: 28px;
+            border: 1px solid #DDD;
+            text-align: center;
+            line-height: 30px;
+            border-left: none;
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">资讯列表页</a></li>
+        </ul>
+    </div>
+    <div class="rightinfo">
+        <div class="tools">
+            <ul class="toolbar">
+                <li><a href="{:url('admin/news/add')}"><span><img src="__admin__/images/t01.png" /></span>添加</a></li>
+                <!-- <li><a href="#"><span><img src="__admin__/images/t03.png" /></span>批量删除</a></li> -->
+<!--                 <li><span><img src="__admin__/images/t02.png" /></span>修改</li>
+                <li><span><img src="__admin__/images/t04.png" /></span>统计</li> -->
+            </ul>
+        </div>
+        <table class="tablelist">
+            <thead>
+                <tr>
+                    <th>
+                        <input name="" type="checkbox" value="" id="checkAll" />
+                    </th>
+                    <th>文章ID</th>
+                    <th>标题</th>
+                    <th>分类</th>
+                    <th>作者</th>
+                    <th>图片</th>
+                    <th>创建时间</th>
+                    <th>修改时间</th>
+                    <th>设置热门</th>
+                    <th>是否有效</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            {volist name="list" id="vo"}
+                <tr>
+                    <td>
+                        <input name="" type="checkbox" value="" />
+                    </td>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.title}</td>
+                    
+                    {if condition="$vo['cate'] eq 1"}
+                    <td>新手贷款</td>
+                    {elseif condition="$vo['cate'] eq '2'"/}
+                    <td>无抵押贷款</td>
+                    {elseif condition="$vo['cate'] eq '3'"/}
+                    <td>经营贷款</td>
+                    {elseif condition="$vo['cate'] eq '4'"/}
+                    <td>政策法规</td>
+                    {elseif condition="$vo['cate'] eq '5'"/}
+                    <td>个人贷款</td>
+                    {elseif condition="$vo['cate'] eq '6'"/}
+                    <td>购车贷款</td>
+                    {elseif condition="$vo['cate'] eq '7'"/}
+                    <td>房贷资讯</td>
+                    {elseif condition="$vo['cate'] eq '8'"/}
+                    <td>行业动态</td>
+                    {elseif condition="$vo['cate'] eq '9'"/}
+                    <td>信用卡资讯</td>
+                    {/if} 
+                
+
+                    <td>{$vo.author}</td>
+                    <td><img width="50" src="{$vo['image']}" alt="" /></td>
+                    <td>{$vo.add_time}</td>
+                    <td>{$vo.modify_time}</td>
+
+                    {if condition="$vo['is_hot'] eq 'Y'"}
+                    <td><a href="{:url('/admin/news/hot',['id'=>$vo['id']])}" style="color:red;">[热门]</a></td>
+                    {elseif condition="$vo['is_hot'] eq 'N'"}
+                    <td><a href="{:url('/admin/news/hot',['id'=>$vo['id']])}" style="color:blue;">[未设]</a></td>
+                    {/if} 
+
+                    {if condition="$vo['is_valid'] eq 'Y'"}
+                    <td><a href="{:url('/admin/news/valid',['id'=>$vo['id']])}" style="color:blue;">[已启用]</a></td>
+                    {elseif condition="$vo['is_valid'] eq 'N'"}
+                    <td><a href="{:url('/admin/news/valid',['id'=>$vo['id']])}" style="color:red;">[已禁用]</a></td>
+                    {/if} 
+                    <td>
+                        <a href="{:url('admin/news/edit',['id'=>$vo['id']])}" class="tablelink lili">编辑</a> 
+                        <a href="{:url('admin/news/del',['id'=>$vo['id']])}"  class="tablelink lili"> 删除</a>
+                    </td>
+                </tr>
+            {/volist}
+
+            </tbody>
+        </table>
+        <div class="pagin">
+            <div class="message">共<i class="blue">{$count}</i>条记录，当前显示第&nbsp;<i class="blue">{$currentPage}&nbsp;</i>页</div>
+            {$page}
+        </div>
+        <div class="tip">
+            <div class="tiptop"><span>提示信息</span>
+                <a></a>
+            </div>
+            <div class="tipinfo">
+                <span><img src="__admin__/images/ticon.png" /></span>
+                <div class="tipright">
+                    <p>是否确认对信息的修改 ？</p>
+                    <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+                </div>
+            </div>
+            <div class="tipbtn">
+                <input name="" type="button" class="sure" value="确定" />&nbsp;
+                <input name="" type="button" class="cancel" value="取消" />
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+    </script>
+</body>
+
+</html>

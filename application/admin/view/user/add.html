@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>添加用户</title>
+    <link href="__admin__/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__admin__/js/jquery.js"></script>
+    <style>
+        .dfinput1 {
+            width: 75px;
+            height: 15px;
+            line-height: 15px;
+            margin-top:8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">添加用户</a></li>
+        </ul>
+    </div>
+    <div class="formbody">
+        <div class="formtitle"><span>基本信息</span></div>
+        <form action="{:url('admin/user/add')}" method="post">
+            <ul class="forminfo">
+                <li>
+                    <label>账户名称</label>
+                    <input name="account_name" placeholder="请输入用户名称" type="text" class="dfinput" /><i>名称不能超过30个字符</i></li>
+                <li>
+                    <label>账户密码</label>
+                    <input name="credential" placeholder="请输入密码" type="password" class="dfinput" /><i style="color:red;">密码设定后不能更改！</i></li>
+                <li>
+                    <label>用户状态</label>
+                    有效<input name="is_valid"  type="radio"  value='Y' class="dfinput1" checked="checked" />
+                    无效<input name="is_valid"  type="radio"  value='N' class="dfinput1" />
+                </li>
+        
+                <li>
+                    <label>&nbsp;</label>
+                    <input  id="btnSubmit" type="submit" class="btn" value="保存用户" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+
+</html>
